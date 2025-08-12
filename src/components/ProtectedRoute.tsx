@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
-import { useAuthStore } from '@/store/useAuthStore';
-import Loader from '@/components/Loader';
-import BaseLayout from '@/components/Layouts/BaseLayout';
+import { useAuthStore } from '../store/useAuthStore';
+import Loader from '../components/Loader';
+import BaseLayout from '../components/Layouts/BaseLayout';
 
 export default function ProtectedRoute({
   children,
@@ -15,7 +15,7 @@ export default function ProtectedRoute({
   if (loading) return <Loader />;
   if (!user) return <Navigate to="/login" replace />;
   if (allowedRoles && !allowedRoles.includes(profile?.role || '')) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/unauthorized" replace />;
   }
 
   return <BaseLayout>{children}</BaseLayout>;

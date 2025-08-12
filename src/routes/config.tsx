@@ -18,22 +18,23 @@ export interface AppRoute {
 }
 
 // Import halaman
-import AdminDashboard from '@/pages/admin/Dashboard';
-import AdminUsers from '@/pages/admin/Users';
-import AdminTests from '@/pages/admin/Tests';
-import AdminQuestionBank from '@/pages/admin/QuestionBank';
-import AdminAuditLogs from '@/pages/admin/AuditLogs';
-import AdminSettings from '@/pages/admin/Settings';
+import AdminDashboard from '../pages/admin/Dashboard';
+import AdminUsers from '../pages/admin/Users';
+import AdminTests from '../pages/admin/Tests';
+import AdminQuestionBank from '../pages/admin/QuestionBank';
+import AdminAuditLogs from '../pages/admin/AuditLogs';
+import AdminSettings from '../pages/admin/Settings';
 
-import TutorDashboard from '@/pages/tutor/Dashboard';
-import TutorStudents from '@/pages/tutor/Students';
-import TutorTests from '@/pages/tutor/Tests';
-import TutorQuestionBank from '@/pages/tutor/QuestionBank';
+import TutorDashboard from '../pages/tutor/Dashboard';
+import TutorQuestions from '../pages/tutor/Questions';
+import TutorCreateTest from '../pages/tutor/CreateTest';
+import TutorReviews from '../pages/tutor/Reviews';
+import TutorReports from '../pages/tutor/Reports';
 
-import StudentDashboard from '@/pages/student/Dashboard';
-import StudentTests from '@/pages/student/Tests';
-import StudentHistory from '@/pages/student/History';
-import StudentAchievements from '@/pages/student/Achievements';
+import StudentDashboard from '../pages/student/Dashboard';
+import StudentTests from '../pages/student/Tests';
+import StudentHistory from '../pages/student/History';
+import StudentAchievements from '../pages/student/Achievements';
 
 // Semua route di sini
 export const routesConfig: AppRoute[] = [
@@ -90,24 +91,31 @@ export const routesConfig: AppRoute[] = [
     allowedRoles: ['tutor'],
   },
   {
-    path: '/tutor/students',
-    element: <TutorStudents />,
-    label: 'My Students',
-    icon: Users,
+    path: '/tutor/questions',
+    element: <TutorQuestions />,
+    label: 'Questions',
+    icon: FileText,
     allowedRoles: ['tutor'],
   },
   {
-    path: '/tutor/tests',
-    element: <TutorTests />,
-    label: 'Tests',
+    path: '/tutor/create-test',
+    element: <TutorCreateTest />,
+    label: 'Create Test',
     icon: ClipboardList,
     allowedRoles: ['tutor'],
   },
   {
-    path: '/tutor/question-bank',
-    element: <TutorQuestionBank />,
-    label: 'Question Bank',
-    icon: FileText,
+    path: '/tutor/reviews',
+    element: <TutorReviews />,
+    label: 'Reviews',
+    icon: Users,
+    allowedRoles: ['tutor'],
+  },
+  {
+    path: '/tutor/reports',
+    element: <TutorReports />,
+    label: 'Reports',
+    icon: Settings,
     allowedRoles: ['tutor'],
   },
 

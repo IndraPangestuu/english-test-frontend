@@ -10,7 +10,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { setUserProfile } = useAuthStore();
+  const { setUser, setProfile } = useAuthStore();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -25,7 +25,8 @@ export default function Login() {
       return;
     }
 
-    setUserProfile(user, profile);
+    setUser(user);
+    setProfile(profile);
 
     if (profile.role === 'admin') navigate('/admin/dashboard');
     else if (profile.role === 'tutor') navigate('/tutor/dashboard');

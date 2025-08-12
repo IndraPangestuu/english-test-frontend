@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase';
+import type { Question } from '../types';
 
 export async function getAllQuestions() {
   const { data, error } = await supabase.from('questions').select('*');
@@ -12,13 +13,13 @@ export async function getQuestionById(id: string) {
   return data;
 }
 
-export async function createQuestion(question: any) {
+export async function createQuestion(question: Omit<Question, 'id' | 'created_at' | 'updated_at'>) {
   const { data, error } = await supabase.from('questions').insert([question]).select().single();
   if (error) throw error;
   return data;
 }
 
-export async function updateQuestion(id: string, updates: any) {
+export async function updateQuestion(id: string, updates: Partial<Question>) {
   const { data, error } = await supabase.from('questions').update(updates).eq('id', id).select().single();
   if (error) throw error;
   return data;

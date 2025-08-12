@@ -6,7 +6,7 @@ export async function getSettings() {
   return data;
 }
 
-export async function updateSettings(updates: any) {
+export async function updateSettings(updates: Record<string, unknown>) {
   const { data, error } = await supabase.from('settings').update(updates).eq('id', 1).select().single();
   if (error) throw error;
   return data;

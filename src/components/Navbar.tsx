@@ -1,44 +1,55 @@
-import { Menu, LogOut } from 'lucide-react';
-import { useAuthStore } from '@/store/useAuthStore';
-import ThemeToggle from '@/components/ThemeToggle';
+import { Menu, LogOut, User } from 'lucide-react';
+import { useAuthStore } from '../store/useAuthStore';
+import { useNavigate } from 'react-router-dom';
 
 interface NavbarProps {
-  onMenuClick?: () => void;
+  onMenuClick: () => void;
 }
 
 export default function Navbar({ onMenuClick }: NavbarProps) {
-  const { profile, logout } = useAuthStore();
+  const { user, profile, logout } = useAuthStore();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
 
   return (
-    <header className="w-full bg-secondary text-white border-b border-border">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
-        {/* Left: Hamburger menu (mobile) + Logo */}
-        <div className="flex items-center gap-3">
+    <nav className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-4">
           <button
-            className="lg:hidden p-2 rounded hover:bg-primary/20"
             onClick={onMenuClick}
+            className="lg:hidden p-2 rounded-md hover:bg-gray-100"
           >
-            <Menu className="w-5 h-5" />
+            <Menu className="h-5 w-5" />
           </button>
-          <span className="font-bold text-lg">English Test</span>
+          <h1 className="text-xl font-semibold text-gray-800">
+            English Test Platform
+          </h1>
         </div>
 
-        {/* Right: Theme toggle + user info */}
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-          <span className="hidden sm:inline text-sm font-medium">
-            {profile?.full_name || profile?.email || 'Guest'}
-          </span>
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
+            <User className="h-5 w-5 text-gray-500" />
+            <span className="text-sm text-gray-700">
+              {profile?.full_name || user?.email}
+            </span>
+            <span className="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
+              {profile?.role}
+            </span>
+          </div>
+          
           <button
-            onClick={logout}
-            className="flex items-center gap-1 px-3 py-1 rounded-lg border border-transparent hover:border-primary hover:bg-primary/20 transition-colors"
+            onClick={handleLogout}
+            className="p-2 rounded-md hover:bg-gray-100 text-gray-600"
             title="Logout"
           >
-            <LogOut className="w-5 h-5" />
-            <span className="hidden sm:inline">Logout</span>
+            <LogOut className="h-5 w-5" />
           </button>
         </div>
       </div>
-    </header>
+    </nav>
   );
 }

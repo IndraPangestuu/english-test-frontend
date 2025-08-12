@@ -67,7 +67,7 @@ export async function getTestsForReview() {
 
   if (error) throw error;
 
-  return data.map((row) => ({
+  return data.map((row: any) => ({
     id: row.id,
     title: row.tests[0].title,
     student_name: row.profiles[0].full_name,
