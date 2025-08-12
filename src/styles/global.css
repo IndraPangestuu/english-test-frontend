@@ -1,0 +1,81 @@
+/* ===== Font ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ===== Base Variables (Light Mode) ===== */
+:root {
+  --color-primary: #2563eb;
+  --color-secondary: #1e293b;
+  --color-bg: #ffffff;
+  --color-text: #0f172a;
+
+  --color-border: #e2e8f0;
+  --color-accent: #f1f5f9;
+
+  --font-sans: 'Inter', sans-serif;
+}
+
+/* ===== Dark Mode ===== */
+[data-theme='dark'] {
+  --color-primary: #3b82f6;
+  --color-secondary: #0f172a;
+  --color-bg: #0f172a;
+  --color-text: #f8fafc;
+
+  --color-border: #334155;
+  --color-accent: #1e293b;
+}
+
+/* ===== High Contrast ===== */
+[data-theme='high-contrast'] {
+  --color-primary: #ffcc00;
+  --color-secondary: #000000;
+  --color-bg: #000000;
+  --color-text: #ffffff;
+
+  --color-border: #ffffff;
+  --color-accent: #222222;
+}
+
+/* ===== Base Styling ===== */
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+/* ===== Scrollbar ===== */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+.scrollbar-thumb-rounded {
+  scrollbar-color: var(--color-primary) var(--color-accent);
+}
+.scrollbar-thumb-rounded::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scrollbar-thumb-rounded::-webkit-scrollbar-track {
+  background: var(--color-accent);
+}
+.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 9999px;
+}
+
+/* ===== Utility dari Variables ===== */
+.bg-primary { background-color: var(--color-primary) !important; }
+.bg-secondary { background-color: var(--color-secondary) !important; }
+.text-primary { color: var(--color-primary) !important; }
+.text-secondary { color: var(--color-secondary) !important; }
+.border-primary { border-color: var(--color-primary) !important; }
+.border-secondary { border-color: var(--color-secondary) !important; }
+.border-accent { border-color: var(--color-accent) !important; }
+.accent { background-color: var(--color-accent) !important; } 
